@@ -15,7 +15,15 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    xit 'a plane can land'
+    let(:plane) { double :plane }
+
+    it { is_expected.to respond_to(:land).with(1).argument }
+
+    it 'a plane can land' do
+      airport = Airport.new
+      airport.land(plane)
+      expect(airport.planes.count).to eq 1
+    end
 
     xit 'a plane can take off'
   end

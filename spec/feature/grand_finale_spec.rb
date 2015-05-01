@@ -14,10 +14,11 @@ feature 'Grand Finale' do
   let(:six_planes) { Array.new(6, Plane.new) }
 
   scenario 'all planes can land and all planes can take off' do
-    airport = Airport.new
     six_planes.each { |plane| airport.land(plane) }
+    expect(airport.planes.count).to eq 6
     six_planes.each { |plane| expect(plane).not_to be_flying }
     six_planes.each { |plane| airport.take_off(plane) }
+    expect(airport.planes).to be_empty
     six_planes.each { |plane| expect(plane).to be_flying }
   end
 
